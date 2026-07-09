@@ -12,7 +12,7 @@ documentos do pacote.
 
 ---
 
-## Etapa 1 — Análise do Código-Fonte
+## ~~Etapa 1 — Análise do Código-Fonte~~ ✅ CONCLUÍDA
 
 **Objetivo:** mapear os componentes do código existente que serão referenciados na
 documentação, evitando que agentes de documentação precisem navegar o código durante a
@@ -20,7 +20,7 @@ escrita.
 
 **Agente:** Agente de análise de código  
 **Insumos:** toda a árvore `src/`, `prisma/schema.prisma`, `tests/`  
-**Saída:** `docs/context/CODE_MAP.md`
+**Saída:** `docs/context/CODE_MAP.md` ✅
 
 ### O que o agente deve mapear
 
@@ -43,7 +43,7 @@ de webhooks vai precisar interagir com ele.
 
 ---
 
-## Etapa 2 — Análise da Transcrição
+## ~~Etapa 2 — Análise da Transcrição~~ ✅ CONCLUÍDA
 
 **Objetivo:** extrair da transcrição os fatos documentáveis — decisões fechadas, requisitos,
 restrições, alternativas descartadas, pontos adiados — e produzir um documento de contexto
@@ -56,7 +56,7 @@ estruturado que sirva de fonte única para todos os agentes de documentação.
 
 **Agente:** Agente de análise de transcrição  
 **Insumos:** `TRANSCRICAO.md`  
-**Saída:** `docs/context/TRANSCRIPT_CONTEXT.md`
+**Saída:** `docs/context/TRANSCRIPT_CONTEXT.md` ✅
 
 ### Estrutura obrigatória do `TRANSCRIPT_CONTEXT.md`
 
@@ -261,14 +261,14 @@ Seções obrigatórias:
 
 ---
 
-## Etapa 6 — Criação da Skill de Documentação
+## ~~Etapa 6 — Criação da Skill de Documentação~~ ✅ CONCLUÍDA
 
 **Objetivo:** criar uma skill reutilizável para que agentes sejam direcionados à produção de
 cada tipo de documento sem precisar ler todos os detalhes do README/enunciado a cada invocação.
 
 **Responsável:** você (humano) ou agente de skill  
 **Saída:** `.kiro/skills/doc-writer/` — `SKILL.md` (índice) + guias `adr.md`, `rfc.md`,
-`fdd.md`, `prd.md`, `tracker.md`, `readme-processo.md`
+`fdd.md`, `prd.md`, `tracker.md`, `readme-processo.md` ✅
 
 ### Estrutura da skill
 
@@ -308,18 +308,18 @@ obrigatórios para garantir qualidade e rastreabilidade.
 
 | Artefato | Caminho | Produzido em | Consumido por |
 |---|---|---|---|
-| Mapa do código | `docs/context/CODE_MAP.md` | Etapa 1 | FDD (seção Integração), ADR-006, Tracker |
-| Contexto da transcrição | `docs/context/TRANSCRIPT_CONTEXT.md` | Etapa 2 | Todos os agentes de doc |
-| Skill de documentação | `.kiro/skills/doc-writer/` (`SKILL.md` + 6 guias) | Etapa 6 | Todos os agentes de doc |
+| Mapa do código | `docs/context/CODE_MAP.md` ✅ | Etapa 1 ✅ | FDD (seção Integração), ADR-006, Tracker |
+| Contexto da transcrição | `docs/context/TRANSCRIPT_CONTEXT.md` ✅ | Etapa 2 ✅ | Todos os agentes de doc |
+| Skill de documentação | `.kiro/skills/doc-writer/` (`SKILL.md` + 6 guias) ✅ | Etapa 6 ✅ | Todos os agentes de doc |
 
 ---
 
 ## Sequência de Execução
 
 ```
-Etapa 1: Análise de Código  ──────────────────────────────────┐
+Etapa 1: Análise de Código ✅ ────────────────────────────────┐
                                                                ↓
-Etapa 2: Análise da Transcrição  ────────────────────────> Etapa 3: ADRs
+Etapa 2: Análise da Transcrição ✅ ──────────────────────> Etapa 3: ADRs
                                                                ↓
                                                           Etapa 4a: RFC
                                                                ↓
@@ -331,7 +331,7 @@ Etapa 2: Análise da Transcrição  ──────────────�
                                            ↓
                                       Etapa 5c: README
                                            ↓
-                              Etapa 6: Skill (pode ser feito antes ou em paralelo)
+                              Etapa 6: Skill ✅ (concluída antes das etapas de doc)
 ```
 
 Etapas 1 e 2 podem ser executadas em paralelo entre si.
