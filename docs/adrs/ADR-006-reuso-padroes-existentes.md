@@ -71,7 +71,8 @@ implementar o polling manualmente com Prisma.
 
 **Por que descartada:** exigiria Redis como backend (descartado em ADR-001/ADR-005).
 BullMQ sobre MySQL não existe nativamente. A implementação de polling com Prisma é simples
-e suficiente para o volume atual. Descartada por Diego em `[09:07]`.
+e suficiente para o volume atual. BullMQ não foi nomeado explicitamente na reunião; é uma
+alternativa plausível decorrente da rejeição de infra nova (Redis) em `[09:07] Diego`.
 
 ## Consequências
 

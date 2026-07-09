@@ -21,10 +21,11 @@ calculada sobre o corpo da requisição usando um segredo compartilhado. Qualque
 no payload invalida a assinatura.
 
 A questão do escopo do segredo é crítica. Um segredo global (único para toda a plataforma)
-simplificaria a gestão, mas criaria um risco sistêmico: o vazamento do segredo de um
-único cliente exporia todos os outros clientes da plataforma. A equipe de segurança (Sofia)
-relatou que esse cenário já ocorreu com um cliente anterior da empresa, o que tornou a
-decisão por segredo individual não-negociável.
+simplificaria a gestão, mas criaria um risco sistêmico: o vazamento de um único segredo
+comprometeria a autenticação de todos os clientes da plataforma. Sofia defendeu segredo
+por endpoint com o princípio "se vaza uma, vaza tudo" (`[09:21]`), e Diego reforçou com o
+relato de que a empresa já teve um cliente que vazou o próprio segredo em log de aplicação
+(`[09:22]`), o que consolidou a decisão por segredo individual.
 
 Adicionalmente, toda operação de segurança que exige troca de credenciais precisa de uma
 estratégia de rotação que não cause downtime. Um segredo que não pode ser rotacionado sem
@@ -46,9 +47,10 @@ Um único segredo compartilhado entre todos os endpoints webhook de todos os cli
 Simplificaria a gestão e a rotação.
 
 **Por que descartada:** vazamento do segredo de um cliente (via log, captura de request,
-engenharia reversa) exporia a assinatura de todos os outros clientes da plataforma.
-Sofia relatou que esse cenário já ocorreu na empresa e foi o motivador direto da decisão
-por segredo individual. Descartada por Sofia em `[09:21]–[09:22]`.
+engenharia reversa) comprometeria a autenticação de toda a plataforma. Sofia defendeu o
+segredo por endpoint em `[09:21]` e Diego reforçou em `[09:22]` com o relato de um cliente
+que já vazou o próprio segredo em log de aplicação — motivação direta para a decisão por
+segredo individual.
 
 ### Alternativa B — Autenticação via token estático no header (Bearer token)
 
@@ -95,7 +97,8 @@ por Sofia ao propor o grace period em `[09:21]`.
 ## Referências
 
 - Transcrição: `[09:20]–[09:22] Sofia / Larissa` — decisão por HMAC-SHA256 e secret por endpoint
-- Transcrição: `[09:21] Sofia` — relato de incidente com secret global e motivação para secret individual
+- Transcrição: `[09:21] Sofia` — princípio "se vaza uma, vaza tudo" e motivação para secret individual
+- Transcrição: `[09:22] Diego` — relato de incidente com cliente que vazou secret em log
 - Transcrição: `[09:21] Sofia` — grace period de 24h para rotação
 - Transcrição: `[09:23] Sofia` — TLS obrigatório (HTTPS) como camada complementar
 - Transcrição: `[09:26] Marcos` — documentação no portal do cliente para implementação do receptor

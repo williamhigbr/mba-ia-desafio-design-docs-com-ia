@@ -28,7 +28,7 @@ A questão é qual das três garantias adotar:
   detectar e descartar duplicatas.
 
 O padrão at-least-once com `X-Event-Id` é o modelo adotado pelas plataformas de referência
-do mercado — Stripe, GitHub, Shopify — tornando-o familiar para as equipes de integração
+do mercado — Stripe e GitHub — tornando-o familiar para as equipes de integração
 dos clientes B2B.
 
 ## Decisão
@@ -93,4 +93,4 @@ descartada implicitamente pela adoção dos retries em `[09:15]–[09:17]`.
 - Transcrição: `[09:25] Diego` — descarte do exactly-once por complexidade bidirecional
 - Transcrição: `[09:26] Marcos` — comprometimento com documentação no portal do cliente
 - Transcrição: `[09:44]–[09:45] Diego / Sofia` — confirmação do header X-Event-Id no payload final
-- Código: `prisma/schema.prisma` — campo `eventId` em `WebhookOutbox` (`@unique`, UUID, gerado na inserção)
+- Código: `prisma/schema.prisma` — modelo base para o novo modelo `WebhookOutbox`, cujo campo `eventId` (UUID, `@unique`, gerado na inserção) carrega o `X-Event-Id`
