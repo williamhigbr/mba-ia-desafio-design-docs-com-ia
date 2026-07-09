@@ -102,7 +102,7 @@ estruturado que sirva de fonte única para todos os agentes de documentação.
 
 ---
 
-## Etapa 3 — Produção dos ADRs
+## ~~Etapa 3 — Produção dos ADRs~~ ✅ CONCLUÍDA
 
 **Objetivo:** registrar cada decisão arquitetural isolada antes de qualquer outro documento.
 As decisões formam o esqueleto dos demais docs.
@@ -110,18 +110,18 @@ As decisões formam o esqueleto dos demais docs.
 **Agente:** Agente de ADR  
 **Insumos:** `docs/context/TRANSCRIPT_CONTEXT.md`, `docs/context/CODE_MAP.md`  
 **Skill:** `.kiro/skills/doc-writer/adr.md`  
-**Saída:** `docs/adrs/ADR-001-*.md` … `ADR-00N-*.md` (5 a 8 arquivos)
+**Saída:** `docs/adrs/ADR-001-*.md` … `ADR-00N-*.md` (5 a 8 arquivos) ✅
 
 ### Decisões a cobrir (mínimo 5 das 6)
 
 | # | Decisão | ADR sugerido |
 |---|---|---|
-| 1 | Padrão Outbox no MySQL para desacoplar disparo de webhook da transação | ADR-001 |
-| 2 | Política de retry com backoff exponencial e DLQ | ADR-002 |
-| 3 | Autenticação HMAC-SHA256 com secret por endpoint | ADR-003 |
-| 4 | Garantia at-least-once com idempotência via `X-Event-Id` | ADR-004 |
-| 5 | Worker em processo separado com polling na outbox | ADR-005 |
-| 6 | Reuso dos padrões existentes do projeto (erros, logger, middleware) | ADR-006 |
+| 1 | Padrão Outbox no MySQL para desacoplar disparo de webhook da transação | ADR-001 ✅ |
+| 2 | Política de retry com backoff exponencial e DLQ | ADR-002 ✅ |
+| 3 | Autenticação HMAC-SHA256 com secret por endpoint | ADR-003 ✅ |
+| 4 | Garantia at-least-once com idempotência via `X-Event-Id` | ADR-004 ✅ |
+| 5 | Worker em processo separado com polling na outbox | ADR-005 ✅ |
+| 6 | Reuso dos padrões existentes do projeto (erros, logger, middleware) | ADR-006 ✅ |
 
 ### Formato de cada ADR (MADR)
 
@@ -319,7 +319,7 @@ obrigatórios para garantir qualidade e rastreabilidade.
 ```
 Etapa 1: Análise de Código ✅ ────────────────────────────────┐
                                                                ↓
-Etapa 2: Análise da Transcrição ✅ ──────────────────────> Etapa 3: ADRs
+Etapa 2: Análise da Transcrição ✅ ──────────────────────> Etapa 3: ADRs ✅
                                                                ↓
                                                           Etapa 4a: RFC
                                                                ↓
