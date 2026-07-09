@@ -160,17 +160,17 @@ Aceito | Em revisão | Substituído por ADR-XXX
 
 ---
 
-## Etapa 4 — Produção do RFC e do FDD
+## ~~Etapa 4 — Produção do RFC e do FDD~~ ✅ CONCLUÍDA
 
 Estes dois documentos são produzidos em sequência (RFC primeiro, depois FDD) porque o RFC
 define as fronteiras arquiteturais que o FDD detalha.
 
-### 4a — RFC
+### ~~4a — RFC~~ ✅ CONCLUÍDA
 
 **Agente:** Agente de RFC  
 **Insumos:** `docs/context/TRANSCRIPT_CONTEXT.md`, ADRs gerados  
 **Skill:** `.kiro/skills/doc-writer/rfc.md`  
-**Saída:** `docs/RFC.md`
+**Saída:** `docs/RFC.md` ✅
 
 Escopo do RFC: 2–4 páginas. Visão arquitetural, alternativas descartadas, questões em
 aberto. **Não descer ao nível de implementação** — isso é função do FDD.
@@ -185,12 +185,12 @@ Seções obrigatórias:
 - Impacto e riscos
 - Decisões relacionadas (links `./adrs/ADR-NNN-*.md`)
 
-### 4b — FDD
+### ~~4b — FDD~~ ✅ CONCLUÍDA
 
 **Agente:** Agente de FDD  
 **Insumos:** `docs/context/TRANSCRIPT_CONTEXT.md`, `docs/context/CODE_MAP.md`, `docs/RFC.md`, ADRs gerados  
 **Skill:** `.kiro/skills/doc-writer/fdd.md`  
-**Saída:** `docs/FDD.md`
+**Saída:** `docs/FDD.md` ✅
 
 Seções obrigatórias:
 - Contexto e motivação técnica
@@ -321,9 +321,9 @@ Etapa 1: Análise de Código ✅ ───────────────�
                                                                ↓
 Etapa 2: Análise da Transcrição ✅ ──────────────────────> Etapa 3: ADRs ✅
                                                                ↓
-                                                          Etapa 4a: RFC
+                                                          Etapa 4a: RFC ✅
                                                                ↓
-                                                          Etapa 4b: FDD
+                                                          Etapa 4b: FDD ✅
                                                                ↓
                                            ┌──────────── Etapa 5a: PRD
                                            ↓
