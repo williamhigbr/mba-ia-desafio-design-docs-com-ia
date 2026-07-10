@@ -245,11 +245,11 @@ Critérios mínimos:
 - Itens sem origem rastreável (ex: métricas derivadas do PRD) usam `Fonte = DERIVADO` e não
   contam para as metas de cobertura acima — não forjar timestamp para eles
 
-### 5c — README do processo
+### ~~5c — README do processo~~ ✅ CONCLUÍDA
 
 **Responsável:** humano (você), com apoio de agente de rascunho  
 **Skill:** `.kiro/skills/doc-writer/readme-processo.md`  
-**Saída:** `README.md` (substituindo o enunciado atual)
+**Saída:** `README.md` (substituindo o enunciado atual) ✅
 
 Seções obrigatórias:
 - Sobre o desafio (1–2 parágrafos em suas palavras)
@@ -329,7 +329,7 @@ Etapa 2: Análise da Transcrição ✅ ─────────────�
                                            ↓
                                       Etapa 5b: Tracker ✅
                                            ↓
-                                      Etapa 5c: README
+                                      Etapa 5c: README ✅
                                            ↓
                               Etapa 6: Skill ✅ (concluída antes das etapas de doc)
 ```
