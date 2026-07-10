@@ -465,23 +465,30 @@ Todos os erros do módulo usam prefixo `WEBHOOK_` e estendem `AppError` de
 
 | Código | HTTP | Classe base | Quando ocorre |
 |---|---|---|---|
-| `WEBHOOK_NOT_FOUND` | 404 | `NotFoundError` | Webhook ID inexistente em qualquer operação |
+| `WEBHOOK_NOT_FOUND` | 404 | `AppError` (404) | Webhook ID inexistente em qualquer operação |
 | `WEBHOOK_INVALID_URL` | 400 | `BadRequestError` | URL não-HTTPS ou malformada na criação/edição |
 | `WEBHOOK_INVALID_STATUS_FILTER` | 400 | `BadRequestError` | Status inválido no filtro (não pertence ao enum `OrderStatus`) |
 | `WEBHOOK_INACTIVE` | 422 | `UnprocessableEntityError` | Tentativa de entrega para webhook com `active = false` |
 | `WEBHOOK_PAYLOAD_TOO_LARGE` | 422 | `UnprocessableEntityError` | Payload acima de 64KB `[09:24] Diego / Larissa` |
-| `WEBHOOK_DELIVERY_NOT_FOUND` | 404 | `NotFoundError` | ID de dead_letter inexistente no replay |
+| `WEBHOOK_DELIVERY_NOT_FOUND` | 404 | `AppError` (404) | ID de dead_letter inexistente no replay |
 | `WEBHOOK_ALREADY_REQUEUED` | 409 | `ConflictError` | Evento da DLQ já foi recolocado na fila (replayedAt != null) |
-| `WEBHOOK_CUSTOMER_NOT_FOUND` | 404 | `NotFoundError` | `customerId` não existe ao cadastrar webhook |
+| `WEBHOOK_CUSTOMER_NOT_FOUND` | 404 | `AppError` (404) | `customerId` não existe ao cadastrar webhook |
+
+> As classes base 400/409/422 (`BadRequestError`, `ConflictError`, `UnprocessableEntityError`) já
+> aceitam código customizado no construtor. Já `NotFoundError` fixa o código em `NOT_FOUND`, então os
+> erros 404 do módulo estendem `AppError` diretamente para manter o prefixo `WEBHOOK_`.
 
 **Exemplo de classe de erro:**
 ```typescript
 // src/modules/webhooks/webhook.errors.ts
-import { NotFoundError, BadRequestError } from '../../shared/errors/http-errors.js';
+import { AppError } from '../../shared/errors/app-error.js';
+import { BadRequestError } from '../../shared/errors/http-errors.js';
 
-export class WebhookNotFoundError extends NotFoundError {
+// NotFoundError fixa o errorCode em 'NOT_FOUND'; para preservar o prefixo
+// WEBHOOK_ nos erros 404 estendemos AppError diretamente (statusCode 404).
+export class WebhookNotFoundError extends AppError {
   constructor(id: string) {
-    super(`Webhook ${id} not found`, 'WEBHOOK_NOT_FOUND');
+    super(`Webhook ${id} not found`, 404, 'WEBHOOK_NOT_FOUND');
   }
 }
 
@@ -599,13 +606,14 @@ O método `changeStatus` recebe uma chamada à função `publishWebhookEvent` de
 ```typescript
 // Dentro de this.prisma.$transaction(async (tx) => { ... })
 // ... após tx.orderStatusHistory.create(...)
+// (no changeStatus as variáveis locais são `from` e `to`)
 
 await publishWebhookEvent(tx, {
   orderId: id,
   orderNumber: order.orderNumber,
   customerId: order.customerId,
   totalCents: order.totalCents,
-}, fromStatus, toStatus);
+}, from, to);
 
 // tx.order.findUnique(...) — retorno final
 ```
@@ -808,4 +816,4 @@ Nenhuma nova dependência de infraestrutura. HMAC usa `crypto` nativo do Node.js
 | Vazamento de secret HMAC pelo cliente | Baixo | Alto | Endpoint de rotação com grace period 24h; log de todas as rotações |
 | Cliente recebe evento duplicado (at-least-once) | Médio | Baixo | `X-Event-Id` documentado no portal; responsabilidade de deduplicação do cliente `[09:26] Marcos` |
 | Payload excede 64KB inesperadamente | Baixo | Médio | Erro explícito `WEBHOOK_PAYLOAD_TOO_LARGE`; evento vai para DLQ para análise |
-| Secret vaza via log de erro | Baixo | Alto | `secret` no campo redact do Pino (padrão: `*.token`, `*.secret` já redactados em `src/shared/logger/index.ts`) |
+| Secret vaza via log de erro | Baixo | Alto | Adicionar `*.secret` à lista `redact` do Pino em `src/shared/logger/index.ts` (que já cobre `*.token`, `*.password`, `*.passwordHash`, `*.accessToken`); nunca logar o corpo assinado |
