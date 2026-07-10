@@ -225,12 +225,12 @@ em linguagem de produto/negócio. Atenção especial para:
 - "Fora de escopo" com ≥ 2 itens explicitamente descartados/adiados na reunião
 - "Riscos" com ≥ 2 riscos com probabilidade, impacto e mitigação
 
-### 5b — Tracker de Rastreabilidade
+### ~~5b — Tracker de Rastreabilidade~~ ✅ CONCLUÍDA
 
 **Agente:** Agente de Tracker  
 **Insumos:** todos os documentos produzidos + `docs/context/TRANSCRIPT_CONTEXT.md` + `docs/context/CODE_MAP.md`  
 **Skill:** `.kiro/skills/doc-writer/tracker.md`  
-**Saída:** `docs/TRACKER.md`
+**Saída:** `docs/TRACKER.md` ✅
 
 Formato da tabela:
 
@@ -327,7 +327,7 @@ Etapa 2: Análise da Transcrição ✅ ─────────────�
                                                                ↓
                                            ┌──────────── Etapa 5a: PRD ✅
                                            ↓
-                                      Etapa 5b: Tracker
+                                      Etapa 5b: Tracker ✅
                                            ↓
                                       Etapa 5c: README
                                            ↓
