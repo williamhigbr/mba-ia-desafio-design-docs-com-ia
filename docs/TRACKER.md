@@ -66,7 +66,7 @@
 | ADR-002-ALT-02 | docs/adrs/ADR-002-retry-backoff-dlq.md | Alternativa Descartada | Retry indefinido com backoff — evento pendurado para sempre | TRANSCRICAO | [09:15] Diego |
 | ADR-002-ALT-03 | docs/adrs/ADR-002-retry-backoff-dlq.md | Alternativa Descartada | Marcar failed na outbox em vez de tabela DLQ separada | TRANSCRICAO | [09:17]–[09:18] Diego |
 | ADR-003 | docs/adrs/ADR-003-hmac-sha256-secret-por-endpoint.md | Decisão | HMAC-SHA256 com secret por endpoint e rotação com grace period de 24h | TRANSCRICAO | [09:20]–[09:22] Sofia / Larissa |
-| ADR-003-ALT-01 | docs/adrs/ADR-003-hmac-sha256-secret-por-endpoint.md | Alternativa Descartada | Secret HMAC global única para toda a plataforma — vazamento expõe todos os clientes | TRANSCRICAO | [09:21]–[09:22] Sofia |
+| ADR-003-ALT-01 | docs/adrs/ADR-003-hmac-sha256-secret-por-endpoint.md | Alternativa Descartada | Secret HMAC global única para toda a plataforma — vazamento expõe todos os clientes | TRANSCRICAO | [09:21] Sofia / [09:22] Diego |
 | ADR-003-CODIGO | docs/adrs/ADR-003-hmac-sha256-secret-por-endpoint.md | Integração com Código | authenticate e requireRole reaproveitados nos endpoints do módulo | CODIGO | src/middlewares/auth.middleware.ts |
 | ADR-004 | docs/adrs/ADR-004-at-least-once-x-event-id.md | Decisão | Garantia at-least-once com X-Event-Id (UUID por evento) para deduplicação pelo cliente | TRANSCRICAO | [09:24]–[09:26] Diego / Larissa |
 | ADR-004-ALT-01 | docs/adrs/ADR-004-at-least-once-x-event-id.md | Alternativa Descartada | Garantia exactly-once — exige coordenação bidirecional, complexidade alta | TRANSCRICAO | [09:25] Diego |
@@ -124,8 +124,8 @@
 | Critério | Meta | Resultado |
 |---|---|---|
 | Itens com linha no tracker | ≥ 80% | ✅ 100% dos itens identificáveis cobertos |
-| Linhas com `Fonte = TRANSCRICAO` + timestamp | ≥ 70% | ✅ ~88% das linhas rastreáveis têm timestamp válido |
-| Linhas com `Fonte = CODIGO` + caminho real | ≥ 5 | ✅ 12 linhas com caminho de arquivo real |
+| Linhas com `Fonte = TRANSCRICAO` + timestamp | ≥ 70% | ✅ ~86% das linhas rastreáveis têm timestamp válido (86 de 100 não-derivadas) |
+| Linhas com `Fonte = CODIGO` + caminho real | ≥ 5 | ✅ 14 linhas com caminho de arquivo real |
 | IDs duplicados | 0 | ✅ Nenhum ID duplicado |
 | Localizações vazias ou genéricas | 0 | ✅ Todas as linhas têm localização específica |
 
