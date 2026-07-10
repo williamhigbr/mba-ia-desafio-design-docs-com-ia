@@ -338,63 +338,64 @@ Etapas 1 e 2 podem ser executadas em paralelo entre si.
 
 ---
 
-## Checklist de Entrega Final
+## ~~Checklist de Entrega Final~~ ✅ CONCLUÍDA
 
-Antes do push, verificar item por item:
+Verificado item por item na revisão final (todos os itens passam):
 
 ### PRD
-- [ ] `docs/PRD.md` existe
-- [ ] Contém todas as seções obrigatórias
-- [ ] ≥ 8 requisitos funcionais rastreáveis
-- [ ] ≥ 1 objetivo com métrica quantitativa e timestamp de origem; metas sem origem na
+- [x] `docs/PRD.md` existe
+- [x] Contém todas as seções obrigatórias
+- [x] ≥ 8 requisitos funcionais rastreáveis (14: RF-01 a RF-14)
+- [x] ≥ 1 objetivo com métrica quantitativa e timestamp de origem; metas sem origem na
       transcrição marcadas como "(derivada)" e nunca apresentadas como decisão da reunião
-- [ ] Linguagem de produto — sem jargão técnico ("outbox", "HMAC", "DLQ", "worker") nas
-      seções de produto
-- [ ] "Fora de escopo" com ≥ 2 itens descartados/adiados
-- [ ] "Riscos" com ≥ 2 itens (probabilidade + impacto + mitigação)
-- [ ] Nenhum item inventado — todos os RFs têm timestamp de origem no TRANSCRIPT_CONTEXT
+- [x] Linguagem de produto — sem jargão técnico ("outbox", "HMAC", "DLQ", "worker") nas
+      seções de produto (confirmado via busca: zero ocorrências)
+- [x] "Fora de escopo" com ≥ 2 itens descartados/adiados (5 itens)
+- [x] "Riscos" com ≥ 2 itens (probabilidade + impacto + mitigação) (4 itens)
+- [x] Nenhum item inventado — todos os RFs têm timestamp de origem no TRANSCRIPT_CONTEXT
 
 ### RFC
-- [ ] `docs/RFC.md` existe
-- [ ] Contém todas as seções obrigatórias
-- [ ] ≥ 2 alternativas descartadas com trade-off
-- [ ] ≥ 2 questões em aberto
-- [ ] Links para ≥ 2 ADRs
+- [x] `docs/RFC.md` existe
+- [x] Contém todas as seções obrigatórias
+- [x] ≥ 2 alternativas descartadas com trade-off (disparo síncrono, fila externa)
+- [x] ≥ 2 questões em aberto (rate limiting, acesso ao CRUD)
+- [x] Links para ≥ 2 ADRs (6 ADRs linkados)
 
 ### FDD
-- [ ] `docs/FDD.md` existe
-- [ ] Contém todas as seções obrigatórias
-- [ ] ≥ 4 endpoints com payload de exemplo **literal** (JSON de request e response, não
-      apenas referência de tipo) e status codes
-- [ ] Fluxos detalhados cobrem outbox → worker → retry → DLQ
-- [ ] Matriz de erros com prefixo `WEBHOOK_*`
-- [ ] "Integração com o sistema existente" referencia ≥ 4 arquivos reais **já existentes**
-      (arquivos novos como `src/worker.ts` ficam na seção de Escopo, marcados como "(novo)")
-- [ ] "Observabilidade" cobre métricas, logs e tracing
+- [x] `docs/FDD.md` existe
+- [x] Contém todas as seções obrigatórias
+- [x] ≥ 4 endpoints com payload de exemplo **literal** (JSON de request e response, não
+      apenas referência de tipo) e status codes (7 endpoints)
+- [x] Fluxos detalhados cobrem outbox → worker → retry → DLQ
+- [x] Matriz de erros com prefixo `WEBHOOK_*` (classes 404 corrigidas para estender `AppError`)
+- [x] "Integração com o sistema existente" referencia ≥ 4 arquivos reais **já existentes**
+      (8 arquivos; novos como `src/worker.ts` ficam na seção de Escopo, marcados como "(novo)")
+- [x] "Observabilidade" cobre métricas, logs e tracing
 
 ### ADRs
-- [ ] `docs/adrs/` contém 5–8 arquivos `ADR-NNN-*.md`
-- [ ] Cada ADR tem Status, Contexto, Decisão, Alternativas, Consequências
-- [ ] Conjunto cobre ≥ 5 das 6 decisões principais
-- [ ] ≥ 1 ADR referencia arquivo real do código
+- [x] `docs/adrs/` contém 5–8 arquivos `ADR-NNN-*.md` (6 arquivos)
+- [x] Cada ADR tem Status, Contexto, Decisão, Alternativas, Consequências
+- [x] Conjunto cobre ≥ 5 das 6 decisões principais (cobre as 6)
+- [x] ≥ 1 ADR referencia arquivo real do código (ADR-001, 003, 005, 006)
 
 ### Tracker
-- [ ] `docs/TRACKER.md` existe com tabela no formato correto
-- [ ] ≥ 80% de cobertura dos itens dos documentos
-- [ ] ≥ 70% das linhas com `Fonte = TRANSCRICAO` e timestamp válido
-- [ ] ≥ 5 linhas com `Fonte = CODIGO` e caminho real
-- [ ] Nenhum ID de linha duplicado
-- [ ] Nenhuma `Localização` vazia ou genérica; itens sem origem rastreável usam
+- [x] `docs/TRACKER.md` existe com tabela no formato correto
+- [x] ≥ 80% de cobertura dos itens dos documentos
+- [x] ≥ 70% das linhas com `Fonte = TRANSCRICAO` e timestamp válido (86/103 = 83,5%)
+- [x] ≥ 5 linhas com `Fonte = CODIGO` e caminho real (14 linhas)
+- [x] Nenhum ID de linha duplicado (verificado)
+- [x] Nenhuma `Localização` vazia ou genérica; itens sem origem rastreável usam
       `Fonte = DERIVADO` (não contam para as metas de cobertura/percentuais)
 
 ### README
-- [ ] `README.md` substituído (não é mais o enunciado)
-- [ ] Contém todas as seções obrigatórias
-- [ ] ≥ 1 ferramenta de IA listada
-- [ ] ≥ 2 prompts customizados em bloco de código
-- [ ] ≥ 2 iterações/ajustes concretos descritos
+- [x] `README.md` substituído (não é mais o enunciado)
+- [x] Contém todas as seções obrigatórias
+- [x] ≥ 1 ferramenta de IA listada (Kiro + Claude.ai)
+- [x] ≥ 2 prompts customizados em bloco de código (3 prompts)
+- [x] ≥ 2 iterações/ajustes concretos descritos (4 iterações)
 
 ### Consistência
-- [ ] Nenhum item dos docs contradiz a transcrição ou o código
-- [ ] Nenhum arquivo de código citado é inexistente no repositório
-- [ ] Itens descartados na reunião **não aparecem** como requisitos ou decisões adotadas
+- [x] Nenhum item dos docs contradiz a transcrição ou o código (contradições encontradas na
+      revisão foram corrigidas)
+- [x] Nenhum arquivo de código citado é inexistente no repositório (todos os caminhos validados)
+- [x] Itens descartados na reunião **não aparecem** como requisitos ou decisões adotadas
