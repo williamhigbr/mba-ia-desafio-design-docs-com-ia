@@ -53,17 +53,17 @@ a eventos do ciclo de vida de pedidos. `[09:00]–[09:02] Marcos`
 
 **Cenários de uso:**
 
-- **Pagamento confirmado → disparo logístico:** ao receber notificação de status `PAGO`, o
+- **Pagamento confirmado → disparo logístico:** ao receber notificação de status `PAID`, o
   sistema do cliente libera a separação de mercadoria no armazém sem esperar a próxima
   janela de consulta.
 
-- **Pedido enviado → comunicação ao comprador:** ao receber notificação de status `ENVIADO`,
+- **Pedido enviado → comunicação ao comprador:** ao receber notificação de status `SHIPPED`,
   o cliente dispara automaticamente o e-mail ou SMS de rastreamento para o comprador final.
 
-- **Pedido cancelado → reposição de estoque:** ao receber notificação de status `CANCELADO`,
+- **Pedido cancelado → reposição de estoque:** ao receber notificação de status `CANCELLED`,
   o sistema do cliente repõe o item no seu próprio inventário e estorna reservas de entrega.
 
-- **Pedido entregue → fechamento de ciclo:** ao receber notificação de status `ENTREGUE`,
+- **Pedido entregue → fechamento de ciclo:** ao receber notificação de status `DELIVERED`,
   o cliente finaliza o fluxo de atendimento, libera a fatura e arquiva o pedido.
 
 `[09:02] Marcos`
@@ -127,7 +127,7 @@ Itens explicitamente descartados ou adiados na reunião:
 
 | ID | Requisito | Fonte |
 |---|---|---|
-| RF-01 | O sistema permite cadastrar um endpoint de notificação informando URL (obrigatoriamente HTTPS), identificador do cliente e lista de mudanças de status a monitorar | `[09:31] Marcos` |
+| RF-01 | O sistema permite cadastrar um endpoint de notificação informando URL (obrigatoriamente HTTPS), identificador do cliente e lista de mudanças de status a monitorar | `[09:31] Marcos`; HTTPS obrigatório em `[09:23] Sofia` |
 | RF-02 | A credencial de autenticação do endpoint é gerada pela plataforma e entregue ao cliente apenas no momento do cadastro; não é possível consultá-la depois | `[09:31] Marcos` |
 | RF-03 | O cliente pode editar a URL, o filtro de eventos e o estado ativo/inativo de um endpoint cadastrado | `[09:33] Bruno` |
 | RF-04 | O cliente pode remover um endpoint de notificação cadastrado | `[09:33] Bruno` |
@@ -135,7 +135,7 @@ Itens explicitamente descartados ou adiados na reunião:
 | RF-06 | Apenas mudanças de status que constem no filtro configurado pelo cliente geram notificação para aquele endpoint; a filtragem é feita no momento do registro do evento | `[09:33]–[09:34] Marcos / Bruno / Diego` |
 | RF-07 | Em caso de falha de entrega, a plataforma retenta automaticamente até 5 vezes com intervalos crescentes entre as tentativas | `[09:15]–[09:17] Diego / Larissa` |
 | RF-08 | Notificações que esgotam todas as tentativas são movidas para uma fila de falhas definitivas, preservando o conteúdo e o motivo da falha para investigação | `[09:17]–[09:18] Diego / Larissa` |
-| RF-09 | Usuários com permissão de administrador podem reprocessar manualmente uma notificação da fila de falhas definitivas, reiniciando as tentativas de entrega | `[09:18]–[09:19] Diego / Larissa / Sofia` |
+| RF-09 | Usuários com permissão de administrador podem reprocessar manualmente uma notificação da fila de falhas definitivas, reiniciando as tentativas de entrega | `[09:18]–[09:19] Diego / Larissa`; role ADMIN exigida em `[09:36] Sofia / Larissa` |
 | RF-10 | O cliente pode consultar o histórico completo de tentativas de entrega de cada endpoint, incluindo resultado, código de resposta e tempo de resposta de cada tentativa | `[09:34] Marcos` |
 | RF-11 | O cliente pode solicitar a rotação da credencial de autenticação; a credencial anterior permanece válida por 24 horas após a rotação para evitar interrupção de serviço | `[09:21] Sofia` |
 | RF-12 | Cada notificação carrega um identificador único imutável, enviado em todas as tentativas de entrega do mesmo evento, para que o cliente identifique e descarte duplicatas | `[09:25] Diego` |
