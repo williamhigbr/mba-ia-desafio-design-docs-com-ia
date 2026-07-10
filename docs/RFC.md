@@ -2,10 +2,10 @@
 
 | Campo     | Valor |
 |-----------|-------|
-| Autor     | Diego (Eng. Sênior — Plataforma) |
+| Autor     | Larissa (Tech Lead) |
 | Status    | Em revisão |
 | Data      | 2026-07-09 |
-| Revisores | Larissa (Tech Lead), Marcos (PM), Bruno (Eng. Pleno — Pedidos), Diego (Eng. Sênior — Plataforma), Sofia (Eng. de Segurança) |
+| Revisores | Marcos (PM), Bruno (Eng. Pleno — Pedidos), Diego (Eng. Sênior — Plataforma), Sofia (Eng. de Segurança) |
 
 ---
 
@@ -31,8 +31,9 @@ alternativa disponível é polling periódico na API do OMS, o que gera carga de
 latência imprevisível e acoplamento operacional entre os sistemas. `[09:02] Marcos`
 
 O OMS não tem nenhum mecanismo de notificação externa. Não há eventos, filas, webhooks ou
-qualquer forma de push. Essa lacuna está causando fricção de integração e foi apontada como
-risco de churn pelos três clientes citados. `[09:00] Marcos`
+qualquer forma de push. Essa lacuna está causando fricção de integração e, no caso da Atlas
+Comercial, foi apontada como risco de churn: a Atlas sinalizou que pode migrar para um
+concorrente caso a feature não seja entregue até o fim do trimestre. `[09:00] Marcos`
 
 A feature precisa preencher exatamente essa lacuna: permitir que clientes cadastrem
 endpoints HTTP e recebam notificações automáticas quando pedidos transitarem entre estados
