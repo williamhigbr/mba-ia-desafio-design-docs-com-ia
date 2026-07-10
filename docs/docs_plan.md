@@ -210,12 +210,12 @@ Seções obrigatórias:
 
 ## Etapa 5 — PRD, Tracker e README
 
-### 5a — PRD
+### ~~5a — PRD~~ ✅ CONCLUÍDA
 
 **Agente:** Agente de PRD  
 **Insumos:** `docs/context/TRANSCRIPT_CONTEXT.md`, `docs/RFC.md`, `docs/FDD.md`  
 **Skill:** `.kiro/skills/doc-writer/prd.md`  
-**Saída:** `docs/PRD.md`
+**Saída:** `docs/PRD.md` ✅
 
 O PRD é o mais alto nível. Com RFC, FDD e ADRs prontos, é principalmente uma consolidação
 em linguagem de produto/negócio. Atenção especial para:
@@ -325,7 +325,7 @@ Etapa 2: Análise da Transcrição ✅ ─────────────�
                                                                ↓
                                                           Etapa 4b: FDD ✅
                                                                ↓
-                                           ┌──────────── Etapa 5a: PRD
+                                           ┌──────────── Etapa 5a: PRD ✅
                                            ↓
                                       Etapa 5b: Tracker
                                            ↓
